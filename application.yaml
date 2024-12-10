@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helloargo-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:phelun/helloargo.git
+    targetRevision: HEAD # or a specific branch, tag, or commit hash, e.g., "main"
+    path: . # Path within the repo where manifests are located
+  destination:
+    server: https://kubernetes.default.svc # Target Kubernetes cluster (in-cluster in this case)
+    namespace: helloargo
+  syncPolicy:
+    automated:
+      prune: true # Automatically delete resources not tracked in Git
+      selfHeal: true # Automatically correct drift between Git and live cluster state
+    syncOptions:
+      - CreateNamespace=true # Automatically create the namespace if it doesn't exist
