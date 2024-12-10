@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:phelun/helloargo.git
+    repoURL: https://github.com/phelun/helloargo.git
     targetRevision: HEAD # or a specific branch, tag, or commit hash, e.g., "main"
     path: . # Path within the repo where manifests are located
   destination:
